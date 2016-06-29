@@ -8,15 +8,6 @@
 
 N_ent* root_global = NULL;
 
-/*T_ent* create_tree() {
-   T_ent* tree_list = (T_ent*) malloc (sizeof(T_ent));
-   if (tree_list == NULL)
-       return NULL;
-   tree_list->root = NULL;
-   return tree_list; 
-}
-*/
-
 int add_caller(int data) {
   return add_node(data, root_global);
 }
