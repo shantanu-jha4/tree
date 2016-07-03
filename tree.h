@@ -18,11 +18,9 @@ N_ent* create_node(int data);
 
 int add_caller(int data);
 
-void print_root();
+int addInternal(N_ent* new_node, N_ent** node);
 
-int addInternal(N_ent* new_node, N_ent* node);
-
-int add_node(int data, N_ent* node);
+int add_node(int data, N_ent** node);
 
 N_ent* search_caller(N_ent* to_search);
 
