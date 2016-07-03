@@ -34,29 +34,40 @@ int add_node(int data, N_ent* node) {
 	if (new_node == NULL)
 	    return 0;
 	new_node->data = data;
+	new_node->left = NULL;
+	new_node->right = NULL;
+	assert(new_node->left == NULL);
+	assert(new_node->right == NULL);
 	//if (node)
 	 // printf("New Node: %d, Node: %d\n", new_node->data, node->data);
 	//printf("New Node: %d\n", new_node->data);
 	return addInternal(new_node, node);
+	//return -1;
 }
 
 int addInternal(N_ent* new_node, N_ent* node) {
     
-    printf(" %p\n", (void*)node);
+    printf("Node: %p\n", (void*)node);
     if (node == NULL) {
      if (is_root_null == 0) {
-     	printf("Root time: \n");
+     	printf("Root time... \n");
 	is_root_null = 1;
 	root_global = new_node;
+	/*assert(root_global->left == new_node->left);
+	assert(root_global->right == new_node->right);
+	assert(root_global->data == new_node->data);
 	root_global->left = NULL;
 	root_global->right = NULL;
-	node = root_global;
+	node = root_global;*/
 	printf("Root Address: %p\n", (void*)root_global);
 	return 1;
      }
      node = new_node;
-     assert (node->right == NULL);
-     assert (node->left == NULL);
+    /* assert(node->left == NULL);
+     assert(node->right == NULL);
+     assert(node->data == new_node->data);
+     node->right = NULL;
+     node->left = NULL;*/
      return 1;
    }
    if(node->data == new_node->data) {
@@ -66,13 +77,15 @@ int addInternal(N_ent* new_node, N_ent* node) {
 
    else if(node->data > new_node->data) {
      assert(root_global->left == NULL);
-     node = node->left;
-     return addInternal(new_node, node);
+     //node = node->left;
+     printf("Node left: %p\n", (void*)node->left);
+     return addInternal(new_node, node->left);
    }
    else if(node->data < new_node->data) {
      assert(root_global->right == NULL);
-     node = node->right;
-     return addInternal(new_node, node);
+     //node = node->right;
+     printf("Node right: %p\n", (void*)node->right);
+     return addInternal(new_node, node->right);
    }
 
    else
